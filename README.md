@@ -14,20 +14,6 @@
 | name_first_r | string | null: false<br>full-width<br>katakana |
 | birth_day | Date | null: false<br>full-width<br>greater_than: 1920/1/1 <br>smaller_than: 2100/1/1|
 
-### データベースに保存しない ActiveHash
-## Ad
-| Column | Type | Options |
-| ---- | ---- | ---- |
-| year |integer|null: false<br>over 1929<br>Below 2051|
-## Month
-| Column | Type | Options |
-| ---- | ---- | ---- |
-| month | integer |null: false<br>over 1929<br>Below 2051|
-## Day
-| Column | Type | Options |
-| ---- | ---- | ---- |
-| day_int | integer |null: false<br>over 0<br>Below 32|
-
 -----------------------------------------------------------------------
 ## Item
 | Column | Type | Options |
