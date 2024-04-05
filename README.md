@@ -17,10 +17,16 @@
 
 ### データベースに保存しない ActiveHash
 ## Ad
+| Column | Type | Options |
+| ---- | ---- | ---- |
 | year |integer|null: false<br>over 1929<br>Below 2051|
 ## Month
+| Column | Type | Options |
+| ---- | ---- | ---- |
 | month | integer |null: false<br>over 1929<br>Below 2051|
 ## Day
+| Column | Type | Options |
+| ---- | ---- | ---- |
 | day | integer |null: false<br>over 0<br>Below 32|
 
 -----------------------------------------------------------------------
