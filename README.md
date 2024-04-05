@@ -116,8 +116,6 @@
 - has_one:shipping_address
 
 ## ShippingAddress
-- belongs_to:item
-- belongs_to:user
 - belongs_to:order
 - belongs_to:prefecture
 
