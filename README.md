@@ -79,47 +79,47 @@
 # Association
 ## User
 ### when generate items_controller
-has_many :items
+- has_many :items
 ### when generate orders_controller
-has_many :orders, through: :items
+- has_many :orders, through: :items
 ----
 ## Item
 ### when generate items_controller
-belongs_to :user
-belongs_to :category
-belongs_to :condition
-belongs_to :time_for_delivery
-belongs_to :which_delivery_payment
-belongs_to :prefecture
+- belongs_to :user
+- belongs_to :category
+- belongs_to :condition
+- belongs_to :time_for_delivery
+- belongs_to :which_delivery_payment
+- belongs_to :prefecture
 ### when generate order_controller
-has_one:order
-has_one:order,through: :order
+- has_one:order
+- has_one:order,through: :order
 
 ## Category
-has_many :items
+- has_many :items
 ## Condition
-has_many :items
+- has_many :items
 ## TimeForDelivery
-has_many :items
+- has_many :items
 ## WhichDeliveryPayment
-has_many :items
+- has_many :items
 ## Prefecture
-has_many :items
+- has_many :items
 
 ----
 ## Order
-belongs_to:item
-belongs_to:user
-has_one:shipping_address
+- belongs_to:item
+- belongs_to:user
+- has_one:shipping_address
 
 ## ShippingAddress
-belongs_to:item
-belongs_to:user
-belongs_to:order
-belongs_to:prefecture
+- belongs_to:item
+- belongs_to:user
+- belongs_to:order
+- belongs_to:prefecture
 
 ## Prefectures
-has_many:shipping_addresses
+- has_many:shipping_addresses
 
 # ER図
 ![フリマアプリのデータ関係図](data_setting.png "ER図")
