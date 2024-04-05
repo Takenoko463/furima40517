@@ -7,7 +7,6 @@
 | ---- | ---- | ---- |
 | nick_name | string | null: false |
 | email | string | null: false <br>uniqueness<br>include "@" |
-| password |string | null: false <br>include English and number|
 | encrypted_password | string | null: false<br>equal password  |
 | name_last_w | string | null: false<br>full-width<br>kanji |
 | name_first_w | string | null: false<br>full-width<br>kanji |
