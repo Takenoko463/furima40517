@@ -27,7 +27,7 @@
 ## Day
 | Column | Type | Options |
 | ---- | ---- | ---- |
-| day | integer |null: false<br>over 0<br>Below 32|
+| day_int | integer |null: false<br>over 0<br>Below 32|
 
 -----------------------------------------------------------------------
 ## Item
