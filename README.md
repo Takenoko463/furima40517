@@ -74,7 +74,7 @@
 | Column | Type | Options |
 | ---- | ---- | ---- |
 | postal_code | string | null:false<br>\d{3}-\d{4} |
-|prefecture_id | reference | null: false<br>foreign_key:true<br>Below 48 |
+|prefecture_id | integer | null: false<br>foreign_key:true<br>Below 48 |
 | city | string | null:false |
 | house_num | string | null:false |
 | building_name | string | null:true |
