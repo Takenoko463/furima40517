@@ -32,7 +32,6 @@
 ## Item
 | Column | Type | Options |
 | ---- | ---- | ---- |
-|picture|img|null: false |
 |name|string|null: false <br>Below 41|
 |description|text|null: false <br>Below 1001|
 |category_id|reference|null: false<br>foreign_key:true<br>Below 3|
