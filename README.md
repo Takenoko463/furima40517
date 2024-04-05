@@ -85,7 +85,7 @@
 ### when generate items_controller
 - has_many :items
 ### when generate orders_controller
-- has_many :orders, through: :items
+- has_many :orders
 ----
 ## Item
 ### when generate items_controller
@@ -97,8 +97,7 @@
 - belongs_to :prefecture
 ### when generate order_controller
 - has_one:order
-- has_one:order,through: :order
-
+- has_one:order
 ## Category
 - has_many :items
 ## Condition
