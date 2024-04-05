@@ -122,4 +122,4 @@ belongs_to:prefecture
 has_many:shipping_addresses
 
 # ER図
-![フリマアプリのデータ関係図](data_settingc.png "ER図")
+![フリマアプリのデータ関係図](data_setting.png "ER図")
