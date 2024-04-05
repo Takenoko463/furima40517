@@ -109,4 +109,4 @@
 - has_many:shipping_addresses
 
 # ER図
-![フリマアプリのデータ関係図](data_setting.png "ER図")
+![フリマアプリのデータ関係図](data_setting.svg "ER図")
