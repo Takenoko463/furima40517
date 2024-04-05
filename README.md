@@ -85,7 +85,6 @@
 - belongs_to :prefecture
 ### when generate order_controller
 - has_one:order
-- has_one:order
 ## Category
 - has_many :items
 ## Condition
