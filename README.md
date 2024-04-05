@@ -34,19 +34,19 @@
 | ---- | ---- | ---- |
 |name|string|null: false <br>Below 41|
 |description|text|null: false <br>Below 1001|
-|category_id|reference|null: false<br>Below 3|
-|condition_id|reference|null: false<br>Below 7|
+|category_id| integer |null: false<br>Below 3|
+|condition_id| integer |null: false<br>Below 7|
 |which_delivery_payment_id|integer|null: false<br>Below 3|
 | prefecture_id | integer |null: false<br>Below 48|
 | time_for_delivery_id | integer |null: false<br>Below 4|
 | price | integer | null: false<br>Over 299<br>Under 10000000 |
-| user_id | reference | null: false <br>foreign_key:true|
+| user | references | null: false <br>foreign_key:true|
 
 ### データベースに保存しない ActiveHash
 ## Category
 | Column | Type | Options |
 | ---- | ---- | ---- |
-|name|string|null: false|
+| name | string |null: false|
 ## Condition
 | Column | Type | Options |
 | ---- | ---- | ---- |
@@ -68,17 +68,17 @@
 ## Order
 | Column | Type | Options |
 | ---- | ---- | ---- |
-| item_id | reference |  null:false<br>foreign_key:true|
-| shipping_address_id| reference |  null:false<br>foreign_key:true|
-## ShippingAddress
+| user | references |  null:false<br>foreign_key:true|
+| item | references |  null:false<br>foreign_key:true|
+
 | Column | Type | Options |
 | ---- | ---- | ---- |
 | postal_code | string | null:false<br>\d{3}-\d{4} |
-|prefecture_id | integer | null: false<br>foreign_key:true<br>Below 48 |
+| prefecture_id | integer | null: false<br>foreign_key:true<br>Below 48 |
 | city | string | null:false |
 | house_num | string | null:false |
 | building_name | string | null:true |
-| order_id | reference | null: false<br>foreign_key:true |
+| order | references | null: false<br>foreign_key:true |
 
 # Association
 ## User
