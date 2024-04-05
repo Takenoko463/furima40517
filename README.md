@@ -57,6 +57,7 @@
 | user | references |  null:false<br>foreign_key:true|
 | item | references |  null:false<br>foreign_key:true|
 
+## ShippingAddress
 | Column | Type | Options |
 | ---- | ---- | ---- |
 | postal_code | string | null:false<br>\d{3}-\d{4} |
