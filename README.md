@@ -34,11 +34,11 @@
 | ---- | ---- | ---- |
 |name|string|null: false <br>Below 41|
 |description|text|null: false <br>Below 1001|
-|category_id|reference|null: false<br>foreign_key:true<br>Below 3|
-|condition_id|reference|null: false<br>foreign_key:true<br>Below 7|
-|which_delivery_payment_id|reference|null: false<br>foreign_key:true<br> 3|
-| prefecture_id | reference |null: false<br>foreign_key:true<br>Below 48|
-| time_for_delivery_id | reference |null: false<br>foreign_key:true<br>Below 4|
+|category_id|reference|null: false<br>Below 3|
+|condition_id|reference|null: false<br>Below 7|
+|which_delivery_payment_id|integer|null: false<br>Below 3|
+| prefecture_id | integer |null: false<br>Below 48|
+| time_for_delivery_id | integer |null: false<br>Below 4|
 | price | integer | null: false<br>Over 299<br>Under 10000000 |
 | user_id | reference | null: false <br>foreign_key:true|
 
