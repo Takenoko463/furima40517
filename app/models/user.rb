@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nick_name, presence: true
 
+  # nick_nameの文字数
+
+  validates :nick_name, length: { minimum: 1, maximum: 40 }
+
   ## 本名に関する規制
   kanji_reg = '\A\p{Han}+\z'
   validates :name_last_w, :name_first_w, presence: true, format: { with: /#{kanji_reg}/,
