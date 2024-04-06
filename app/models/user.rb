@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :nick_name, presence: true
 
   ## 本名に関する規制
-  kanji_reg = '\A[一-龥]+\z'
+  kanji_reg = '\A\p{Han}+\z'
   validates :name_last_w, :name_first_w, presence: true, format: { with: /#{kanji_reg}/,
                                                                    message: 'is not Kanji' }
   katakana_reg = '\A[ァ-ヶー－]+\z'
