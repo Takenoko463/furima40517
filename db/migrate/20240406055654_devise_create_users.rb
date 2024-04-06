@@ -12,10 +12,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
 
       ## NamesTrue
       ### 全て全角
-      t.string :name_last_w, default: "山田"
-      t.string :name_first_w, default: "小太郎"
-      t.string :name_last_r, default: "ヤマダ"
-      t.string :name_first_r, default: "コタロ"
+      t.string :name_last_w, default: ""
+      t.string :name_first_w, default: ""
+      t.string :name_last_r, default: ""
+      t.string :name_first_r, default: ""
 
       ## Birthday year month day
       t.datetime :birth_day
