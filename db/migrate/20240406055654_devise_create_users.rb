@@ -18,7 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :name_first_r, default: ""
 
       ## Birthday year month day
-      t.datetime :birth_day
+      t.date :birth_day
 
       ## Recoverable
       t.string :reset_password_token
