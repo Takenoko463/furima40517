@@ -9,6 +9,13 @@ class User < ApplicationRecord
 
   validates :nick_name, length: { minimum: 1, maximum: 40 }
 
+  # passwordの条件
+  english_or_num = '\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z'
+  validates :password, format: {
+    with: /#{english_or_num}/i,
+    message: 'must have English and Number'
+  }
+
   ## 本名に関する規制
   kanji_reg = '\A\p{Han}+\z'
   validates :name_last_w, :name_first_w, presence: true, format: { with: /#{kanji_reg}/,
