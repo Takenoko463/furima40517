@@ -3,7 +3,7 @@ FactoryBot.define do
     transient do
       person { Gimei.name }
     end
-    nick_name { Faker::Name.initials(number: 6) }
+    nick_name { Faker::Name.name }
     name_last_w { person.last.kanji }
     name_first_w { person.first.kanji }
     name_last_r { person.last.katakana }

@@ -19,10 +19,10 @@ class User < ApplicationRecord
   ## 本名に関する規制
   kanji_reg = '\A\p{Han}+\z'
   validates :name_last_w, :name_first_w, presence: true, format: { with: /#{kanji_reg}/,
-                                                                   message: 'is not Kanji' }
+                                                                   message: 'must be Kanji' }
   katakana_reg = '\A[ァ-ヶー－]+\z'
   validates :name_last_r, :name_first_r, presence: true, format: { with: /#{katakana_reg}/,
-                                                                   message: 'is not full width Katakana' }
+                                                                   message: 'must be full width Katakana' }
   ## 誕生日の最小、最大値
   start_date = Date.new(1920, 1, 1)
   ## Date.today実行時にvalidationを避ける
