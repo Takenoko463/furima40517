@@ -1,0 +1,16 @@
+FactoryBot.define do
+  factory :user do
+    transient do
+      person { Gimei.name }
+    end
+    nick_name { Faker::Name.initials(number: 6) }
+    name_last_w { person.last.kanji }
+    name_first_w { person.first.kanji }
+    name_last_r { person.last.katakana }
+    name_first_r { person.first.katakana }
+    email                 { Faker::Internet.email }
+    password              { Faker::Internet.password(min_length: 6) }
+    password_confirmation { password }
+    birth_day { Faker::Date.backward }
+  end
+end
