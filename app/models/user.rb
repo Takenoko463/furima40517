@@ -15,7 +15,7 @@ class User < ApplicationRecord
   ## 本名に関する規制
   full_width_reg = '\A[ぁ-んァ-ヶ一-龥々ー]+\z'
   validates :name_last_w, :name_first_w, presence: true, format: { with: /#{full_width_reg}/,
-                                                                   message: 'must be Kanji' }
+                                                                   message: 'must be full width' }
   katakana_reg = '\A[ァ-ヶー－]+\z'
   validates :name_last_r, :name_first_r, presence: true, format: { with: /#{katakana_reg}/,
                                                                    message: 'must be full width Katakana' }
