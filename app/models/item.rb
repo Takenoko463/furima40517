@@ -17,5 +17,9 @@ class Item < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
-  belongs_to :category, :condition, :which_delivery_payment, :prefecture, :time_for_delivery
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :which_delivery_payment
+  belongs_to :prefecture
+  belongs_to :time_for_delivery
 end
