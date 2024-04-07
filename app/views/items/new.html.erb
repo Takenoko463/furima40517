@@ -5,7 +5,7 @@
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model:@item,local: true do |f| %>
-      <%if params[:item] && !f.object.valid?%>
+      <%if params[:errors]&&!f.object.valid?%>
         <%=render 'shared/error_messages', model: f.object %>
       <%end%>
       <%# 商品画像 %>

@@ -16,11 +16,13 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @items = Item.new(item_params)
-    @items.save
-    return unless @items.save
-
-    redirect_to root_path
+    @item = Item.new(item_params)
+    @item.save
+    if @item.save
+      redirect_to root_path
+    else
+      redirect_to new_item_path(@item, errors: true)
+    end
   end
 
   private
