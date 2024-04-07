@@ -11,11 +11,10 @@ class Item < ApplicationRecord
   validates :price, comparison: { greater_than: 299, less_than: 10_000_000 }
 
   # 空白での投稿を阻止
-  validates :name, presence: true, unless: :was_attached?
+  validates :name, presence: true
   validates :description, :price, presence: true
-
   validates :category_id, :condition_id, numericality: { other_than: 1, message: "can't be blank" }
-
+  validates :image, presence: true
   # アソシエーション
   belongs_to :user
   has_one_attached :image
@@ -25,8 +24,4 @@ class Item < ApplicationRecord
   belongs_to :which_delivery_payment
   belongs_to :prefecture
   belongs_to :time_for_delivery
-
-  def was_attached?
-    image.attached?
-  end
 end
