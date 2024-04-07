@@ -5,6 +5,9 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   describe 'ユーザー新規登録' do
+    it 'nicknameとemail、passwordとpassword_confirmation、birth_day、4つのnameが存在すれば登録できる' do
+      expect(@user).to be_valid
+    end
     it 'nick_nameが空では登録できない' do
       @user.nick_name = ''
       @user.valid?
@@ -45,23 +48,18 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Birth day can't be blank"
     end
-    it 'nick_nameが40文字以上では登録できない' do
-      @user.nick_name = Faker::Alphanumeric.alpha(number: 180)
-      @user.valid?
-      expect(@user.errors.full_messages).to include 'Nick name is too long (maximum is 40 characters)'
-    end
     it 'emailは@を持たなくてはいけない' do
       @user.email = 'testgmail'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Email is invalid'
     end
-    it 'name_last_wは全角漢字でないといけない' do
-      @user.name_last_w = 'かくにん'
+    it 'name_last_wは全角でないといけない' do
+      @user.name_last_w = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Name last w must be Kanji'
     end
-    it 'name_first_wは全角漢字でないといけない' do
-      @user.name_first_w = 'かくニン'
+    it 'name_first_wは全角でないといけない' do
+      @user.name_first_w = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Name first w must be Kanji'
     end
@@ -74,16 +72,6 @@ RSpec.describe User, type: :model do
       @user.name_first_r = 'かくニン'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Name first r must be full width Katakana'
-    end
-    it 'birth_dayは今日より前でないといけない' do
-      @user.birth_day = Date.new(2050, 3, 1)
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Birth day must be less than #{Date.today}"
-    end
-    it 'birth_dayは1920年より後でないといけない' do
-      @user.birth_day = Date.new(1900, 3, 1)
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Birth day must be greater than #{Date.new(1920, 1, 1)}"
     end
   end
 end

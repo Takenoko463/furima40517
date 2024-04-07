@@ -5,10 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nick_name, presence: true
 
-  # nick_nameの文字数
-
-  validates :nick_name, length: { minimum: 1, maximum: 40 }
-
   # passwordの条件
   english_or_num = '\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z'
   validates :password, format: {
@@ -17,8 +13,8 @@ class User < ApplicationRecord
   }
 
   ## 本名に関する規制
-  kanji_reg = '\A\p{Han}+\z'
-  validates :name_last_w, :name_first_w, presence: true, format: { with: /#{kanji_reg}/,
+  full_width_reg = '\A[ぁ-んァ-ヶ一-龥々ー]+\z'
+  validates :name_last_w, :name_first_w, presence: true, format: { with: /#{full_width_reg}/,
                                                                    message: 'must be Kanji' }
   katakana_reg = '\A[ァ-ヶー－]+\z'
   validates :name_last_r, :name_first_r, presence: true, format: { with: /#{katakana_reg}/,
