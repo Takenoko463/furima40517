@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  # データの型
+  validates :price, numericality: { only_integer: true }
   # 文字数や、選択肢の上限
   validates :name, length: { maximum: 40 }
   validates :description, length: { maximum: 1000 }
