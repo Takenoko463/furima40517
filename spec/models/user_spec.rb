@@ -53,13 +53,13 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include 'Email is invalid'
     end
-    it 'name_last_wは全角漢字でないといけない' do
-      @user.name_last_w = 'かくにん'
+    it 'name_last_wは全角でないといけない' do
+      @user.name_last_w = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Name last w must be Kanji'
     end
-    it 'name_first_wは全角漢字でないといけない' do
-      @user.name_first_w = 'かくニン'
+    it 'name_first_wは全角でないといけない' do
+      @user.name_first_w = 'test'
       @user.valid?
       expect(@user.errors.full_messages).to include 'Name first w must be Kanji'
     end
