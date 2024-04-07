@@ -5,10 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nick_name, presence: true
 
-  # nick_nameの文字数
-
-  validates :nick_name, length: { minimum: 1, maximum: 40 }
-
   # passwordの条件
   english_or_num = '\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z'
   validates :password, format: {
