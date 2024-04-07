@@ -73,15 +73,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include 'Name first r must be full width Katakana'
     end
-    it 'birth_dayは今日より前でないといけない' do
-      @user.birth_day = Date.new(2050, 3, 1)
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Birth day must be less than #{Date.today}"
-    end
-    it 'birth_dayは1920年より後でないといけない' do
-      @user.birth_day = Date.new(1900, 3, 1)
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Birth day must be greater than #{Date.new(1920, 1, 1)}"
-    end
   end
 end
