@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,
                                       keys: [:nick_name, :name_last_w, :name_first_w, :name_last_r, :name_first_r,
-                                             :birth_day]).merge(user_id: current_user.id)
+                                             :birth_day])
   end
 end
