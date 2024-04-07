@@ -13,4 +13,19 @@ class ItemsController < ApplicationController
     @prefectures = Prefecture.all
     @time_for_deliveries = TimeForDelivery.all
   end
+
+  def create
+    @items = Item.create(item_params)
+    if @items
+      redirect_to root_path
+    else
+      render :index, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:content).merge(user_id: current_user.id)
+  end
 end
