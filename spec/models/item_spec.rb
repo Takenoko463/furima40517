@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
   end
   describe '商品の出品' do
     context '商品の出品を行える場合' do
-      it 'name description 画像、各種id全てを持っている場合' do
+      it 'name description 画像、各種id全てを持ち、userも指定されている場合' do
         expect(@item).to be_valid
       end
     end
@@ -55,6 +55,11 @@ RSpec.describe Item, type: :model do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
+      end
+      it 'userを指定しないと登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
     end
   end
