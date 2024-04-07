@@ -9,6 +9,10 @@ class Item < ApplicationRecord
   validates :time_for_delivery_id, comparison: { less_than: 4 }
   validates :price, comparison: { greater_than: 299, less_than: 10_000_000 }
 
+  validates :name, :description, :price, presence: true
+
+  validates :category_id, numericality: { other_than: 1 }
+
   belongs_to :user
   belongs_to :category
 end
