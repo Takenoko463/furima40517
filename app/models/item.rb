@@ -13,7 +13,8 @@ class Item < ApplicationRecord
   # 空白での投稿を阻止
   validates :name, presence: true
   validates :description, :price, presence: true
-  validates :category_id, :condition_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :category_id, :condition_id, :which_delivery_payment_id, :prefecture_id, :time_for_delivery_id,
+            numericality: { other_than: 1, message: "can't be blank" }
   validates :image, presence: true
   # アソシエーション
   belongs_to :user
