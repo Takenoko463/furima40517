@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   validates :name, length: { maximum: 40 }
   validates :description, length: { maximum: 1000 }
   validates :category_id, comparison: { less_than: 11 }
-  validates :condition_id, comparison: { less_than: 7 }
+  validates :condition_id, comparison: { less_than: 8 }
   validates :which_delivery_payment_id, comparison: { less_than: 3 }
   validates :prefecture_id, comparison: { less_than: 48 }
   validates :time_for_delivery_id, comparison: { less_than: 4 }
@@ -11,8 +11,8 @@ class Item < ApplicationRecord
 
   validates :name, :description, :price, presence: true
 
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :category_id, :condition_id, numericality: { other_than: 1, message: "can't be blank" }
 
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, :condition
 end
