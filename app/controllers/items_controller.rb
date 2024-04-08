@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :create, :show]
+  before_action :find_item, only: [:show, :edit]
   def index
     @items = Item.all
   end
@@ -25,10 +26,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
-
   private
 
   def item_params
@@ -40,5 +37,9 @@ class ItemsController < ApplicationController
     return if user_signed_in?
 
     redirect_to new_user_session_path
+  end
+
+  def find_item
+    @item = Item.find(params[:id])
   end
 end
