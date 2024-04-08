@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :create, :show]
+  before_action :set_item, only: [:show, :edit, :update]
+  before_action :retrieve_all_active_hash, only: [:new, :edit, :create, :update]
   def index
     @items = Item.all
   end
@@ -7,26 +9,29 @@ class ItemsController < ApplicationController
   def new
     # 空の商品情報
     @item = Item.new
-    # アクティブハッシュの情報
-    @categories = Category.all
-    @conditions = Condition.all
-    @which_delivery_payments = WhichDeliveryPayment.all
-    @prefectures = Prefecture.all
-    @time_for_deliveries = TimeForDelivery.all
   end
 
   def create
     @item = Item.new(item_params)
-    @item.save
     if @item.save
       redirect_to root_path
     else
-      redirect_to new_item_path(@item, errors: true)
+      render action: :new, status: :unprocessable_entity
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
+  def edit
+    return if @item.user.id == current_user.id
+
+    redirect_to root_path
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render action: :edit, status: :unprocessable_entity
+    end
   end
 
   private
@@ -40,5 +45,17 @@ class ItemsController < ApplicationController
     return if user_signed_in?
 
     redirect_to new_user_session_path
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def retrieve_all_active_hash
+    @categories = Category.all
+    @conditions = Condition.all
+    @which_delivery_payments = WhichDeliveryPayment.all
+    @prefectures = Prefecture.all
+    @time_for_deliveries = TimeForDelivery.all
   end
 end
