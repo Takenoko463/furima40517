@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :create, :show]
   before_action :find_item, only: [:show, :edit]
+  before_action :retrieve_all_active_hash, only: [:new, :edit]
   def index
     @items = Item.all
   end
@@ -8,12 +9,6 @@ class ItemsController < ApplicationController
   def new
     # 空の商品情報
     @item = Item.new
-    # アクティブハッシュの情報
-    @categories = Category.all
-    @conditions = Condition.all
-    @which_delivery_payments = WhichDeliveryPayment.all
-    @prefectures = Prefecture.all
-    @time_for_deliveries = TimeForDelivery.all
   end
 
   def create
@@ -41,5 +36,13 @@ class ItemsController < ApplicationController
 
   def find_item
     @item = Item.find(params[:id])
+  end
+
+  def retrieve_all_active_hash
+    @categories = Category.all
+    @conditions = Condition.all
+    @which_delivery_payments = WhichDeliveryPayment.all
+    @prefectures = Prefecture.all
+    @time_for_deliveries = TimeForDelivery.all
   end
 end
