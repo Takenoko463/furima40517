@@ -21,9 +21,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    return if @item.user.id == current_user.id
+
+    redirect_to root_path
+  end
+
   def update
-    @item = Item.find(params[:id])
-    item_updated = @item.update(item_params)
+    item = Item.find(params[:id])
+    item_updated = item.update(item_params)
     if item_updated
       redirect_to item_path(item.id)
     else
