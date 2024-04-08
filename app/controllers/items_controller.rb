@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :create, :show]
+  before_action :prohibits_without_account, except: [:index, :create, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :retrieve_all_active_hash, only: [:new, :edit, :create, :update]
-  before_action :your_item?, only: [:edit, :destroy]
+  before_action :unauthorized_access_prohibited, only: [:edit, :destroy]
   def index
     @items = Item.all
   end
@@ -41,14 +41,18 @@ class ItemsController < ApplicationController
                                  :prefecture_id, :time_for_delivery_id, :price).merge(user_id: current_user.id)
   end
 
-  def move_to_index
+  def prohibits_without_account
     return if user_signed_in?
 
     redirect_to new_user_session_path
   end
 
   def your_item?
-    return if @item.user.id == current_user.id
+    @item.user.id == current_user.id
+  end
+
+  def unauthorized_access_prohibited
+    return if your_item?
 
     redirect_to root_path
   end
