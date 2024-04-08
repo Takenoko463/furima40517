@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :create, :show]
-  before_action :find_item, only: [:show, :edit]
+  before_action :set_item, only: [:show, :edit]
   before_action :retrieve_all_active_hash, only: [:new, :edit]
   def index
     @items = Item.all
@@ -21,6 +21,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -34,7 +40,7 @@ class ItemsController < ApplicationController
     redirect_to new_user_session_path
   end
 
-  def find_item
+  def set_item
     @item = Item.find(params[:id])
   end
 
