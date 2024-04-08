@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :create, :show]
-  before_action :set_item, only: [:show, :edit, :update]
-  before_action :retrieve_all_active_hash, only: [:new, :edit]
+  before_action :set_item, only: [:show, :edit]
+  before_action :retrieve_all_active_hash, only: [:new, :edit, :create, :update]
   def index
     @items = Item.all
   end
@@ -17,16 +17,17 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      redirect_to new_item_path(@item, errors: true)
+      render action: :new, status: :unprocessable_entity
     end
   end
 
   def update
+    @item = Item.find(params[:id])
     item_updated = @item.update(item_params)
     if item_updated
-      redirect_to item_path(@item.id)
+      redirect_to item_path(item.id)
     else
-      redirect_to edit_item_path(@item, errors: true)
+      render action: :edit, status: :unprocessable_entity
     end
   end
 
