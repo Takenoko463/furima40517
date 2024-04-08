@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :create]
+  before_action :move_to_index, except: [:index, :create, :show]
   def index
     @items = Item.all
   end
@@ -23,6 +23,10 @@ class ItemsController < ApplicationController
     else
       redirect_to new_item_path(@item, errors: true)
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
