@@ -24,4 +24,6 @@ class User < ApplicationRecord
   ## Date.today実行時にvalidationを避ける
   end_date = ->(_x) { Date.today }
   validates :birth_day, comparison: { greater_than: start_date, less_than: end_date[0] }
+
+  has_many :items
 end
