@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
     if @item.save
       redirect_to root_path
     else
@@ -28,8 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item_updated = @item.update(item_params)
-    if item_updated
+    if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
       render action: :edit, status: :unprocessable_entity
