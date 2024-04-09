@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_column_for_index, only: [:index, :create]
+  before_action :unauthorized_access_prohibited, only: [:index, :create]
   def index
     @order_shipping_address_form = OrderShippingAddressForm.new
   end
@@ -29,8 +30,17 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    item_id = params[:item_id]
     params.require(:order_shipping_address_form).permit(:postal_code, :prefecture_id, :city, :house_num, :building_name,
-                                                        :phone_number).merge(item_id:, user_id: current_user.id)
+                                                        :phone_number).merge(item_id: @item.id, user_id: current_user.id)
+  end
+
+  def your_item?
+    @item.user.id == current_user.id
+  end
+
+  def unauthorized_access_prohibited
+    return if your_item?
+
+    redirect_to root_path
   end
 end
