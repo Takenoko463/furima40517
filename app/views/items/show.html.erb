@@ -7,11 +7,11 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# if item.order.any? %>
-      <%# <div class="sold-out"> %>
-      <%# <span>Sold Out!!</span>
-      </div> %>
-      <%# end %>
+      <%if item.order.any? %>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
+      <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
