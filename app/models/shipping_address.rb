@@ -13,7 +13,7 @@ class ShippingAddress < ApplicationRecord
   }
 
   validates :phone_number, format: {
-    with: /\A\d{1,4}-\d{1,4}-\d{4}\z/,
+    with: /\A\d{10}\z/,
     message: 'is invalid'
   }
 
