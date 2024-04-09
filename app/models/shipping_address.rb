@@ -1,4 +1,5 @@
 class ShippingAddress < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   # 空白での投稿を禁止
   validates :postal_code, :city, :house_num, :phone_number, presence: true
 
