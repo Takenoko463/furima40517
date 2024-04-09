@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_column_for_index, only: [:index, :create]
   def index
     @order_shipping_address_form = OrderShippingAddressForm.new
@@ -15,6 +16,12 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def authenticate_user!
+    return if user_signed_in?
+
+    redirect_to new_user_session_path
+  end
 
   def set_column_for_index
     @item = Item.find(params[:item_id])
