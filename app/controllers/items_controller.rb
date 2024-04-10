@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :create, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :retrieve_all_active_hash, only: [:new, :edit, :create, :update]
-  before_action :unauthorized_access_prohibited, only: [:edit, :destroy]
+  before_action :you_buyer!, only: [:edit, :destroy]
   def index
     @items = Item.all
   end
@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
     @item.user.id == current_user.id
   end
 
-  def unauthorized_access_prohibited
+  def you_buyer!
     return if your_item?
 
     redirect_to root_path

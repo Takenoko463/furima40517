@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :create]
-  before_action :set_column_for_index, only: [:index, :create]
-  before_action :unauthorized_access_prohibited, only: [:index, :create]
+  before_action :authenticate_user!
+  before_action :set_item
+  before_action :retrieve_all_active_hash
+  before_action :you_seller!
   def index
     @order_shipping_address_form = OrderShippingAddressForm.new
   end
@@ -24,8 +25,11 @@ class OrdersController < ApplicationController
     redirect_to new_user_session_path
   end
 
-  def set_column_for_index
-    @item = Item.find(params[:item_id])
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def retrieve_all_active_hash
     @prefectures = Prefecture.all
   end
 
@@ -38,8 +42,8 @@ class OrdersController < ApplicationController
     @item.user.id == current_user.id
   end
 
-  def unauthorized_access_prohibited
-    return if your_item?
+  def you_seller!
+    return unless your_item?
 
     redirect_to root_path
   end
