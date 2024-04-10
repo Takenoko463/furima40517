@@ -8,7 +8,7 @@ RSpec.describe OrderShippingAddressForm, type: :model do
   end
   describe '商品の購入' do
     context '商品の購入に成功' do
-      it '全ての値が正しく入力されている' do
+      it 'tokenを含め全ての値が正しく入力されている' do
         expect(@order_shipping_address_form).to be_valid
       end
       it '建物名だけが空白である' do
@@ -61,6 +61,11 @@ RSpec.describe OrderShippingAddressForm, type: :model do
         @order_shipping_address_form.phone_number = '89-3344'
         @order_shipping_address_form.valid?
         expect(@order_shipping_address_form.errors.full_messages).to include 'Phone number is invalid'
+      end
+      it 'tokenが空では登録できない' do
+        @order_shipping_address_form.token = nil
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include "Token can't be blank"
       end
     end
   end
