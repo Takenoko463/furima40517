@@ -1,10 +1,11 @@
 include AuthenticateUserActions # rubocop:disable Style/MixinUsage
 
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :create]
-  before_action :set_item, only: [:index, :create]
-  before_action :retrieve_all_active_hash, only: [:index, :create]
-  before_action :you_seller!, only: [:index, :create]
+  before_action :authenticate_user!
+  before_action :set_item
+  before_action :retrieve_all_active_hash
+  before_action :you_seller!
+  before_action :sold_out!
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_shipping_address_form = OrderShippingAddressForm.new
@@ -39,7 +40,6 @@ class OrdersController < ApplicationController
   end
 
   def you_seller!
-    # binding.pry
     return unless your_item?
 
     redirect_to root_path

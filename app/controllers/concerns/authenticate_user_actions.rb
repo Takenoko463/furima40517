@@ -9,4 +9,10 @@ module AuthenticateUserActions
   def your_item?
     @item.user.id == current_user.id
   end
+
+  def sold_out!
+    return unless @item.order
+
+    redirect_to root_path
+  end
 end
