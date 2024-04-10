@@ -3,6 +3,9 @@ class OrderShippingAddressForm
   attr_accessor :postal_code, :prefecture_id, :city, :house_num, :building_name,
                 :phone_number, :item_id, :user_id
 
+  # user,itemモデルと紐付けている
+  validates :item_id, :user_id, presence: true
+
   # 空白での投稿を禁止
   validates :postal_code, :city, :house_num, :phone_number, presence: true
 
