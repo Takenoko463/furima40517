@@ -4,7 +4,9 @@ class OrderShippingAddressForm
                 :phone_number, :item_id, :user_id
 
   # user,itemモデルと紐付けている
-  validates :item_id, :user_id, presence: true
+  validates :item_id, :user_id, presence: {
+    message: 'must exist'
+  }
 
   # 空白での投稿を禁止
   validates :postal_code, :city, :house_num, :phone_number, presence: true
