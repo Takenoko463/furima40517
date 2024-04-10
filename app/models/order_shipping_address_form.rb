@@ -1,7 +1,6 @@
 class OrderShippingAddressForm
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :house_num, :building_name,
-                :phone_number, :item_id, :user_id, :token
+  attr_accessor :postal_code, :prefecture_id, :city, :house_num, :building_name, :phone_number, :item_id, :user_id, :token
 
   # user,itemモデルと紐付けている
   validates :item_id, :user_id, presence: {
