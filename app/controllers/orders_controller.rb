@@ -6,12 +6,14 @@ class OrdersController < ApplicationController
   before_action :retrieve_all_active_hash
   before_action :you_seller!
   def index
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_shipping_address_form = OrderShippingAddressForm.new
   end
 
   def create
     @order_shipping_address_form = OrderShippingAddressForm.new(order_params)
     if @order_shipping_address_form.valid?
+      pay_item
       @order_shipping_address_form.save
       redirect_to root_path
     else
@@ -39,5 +41,9 @@ class OrdersController < ApplicationController
     return unless your_item?
 
     redirect_to root_path
+  end
+
+  def pay_item
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
   end
 end
