@@ -1,3 +1,5 @@
+include AuthenticateUserActions # rubocop:disable Style/MixinUsage
+
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :create, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
@@ -39,16 +41,6 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :which_delivery_payment_id,
                                  :prefecture_id, :time_for_delivery_id, :price).merge(user_id: current_user.id)
-  end
-
-  def authenticate_user!
-    return if user_signed_in?
-
-    redirect_to new_user_session_path
-  end
-
-  def your_item?
-    @item.user.id == current_user.id
   end
 
   def you_buyer!

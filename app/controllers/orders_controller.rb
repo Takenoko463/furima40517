@@ -1,3 +1,5 @@
+include AuthenticateUserActions # rubocop:disable Style/MixinUsage
+
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
@@ -19,12 +21,6 @@ class OrdersController < ApplicationController
 
   private
 
-  def authenticate_user!
-    return if user_signed_in?
-
-    redirect_to new_user_session_path
-  end
-
   def set_item
     @item = Item.find(params[:item_id])
   end
@@ -38,11 +34,8 @@ class OrdersController < ApplicationController
                                                         :phone_number).merge(item_id: @item.id, user_id: current_user.id)
   end
 
-  def your_item?
-    @item.user.id == current_user.id
-  end
-
   def you_seller!
+    # binding.pry
     return unless your_item?
 
     redirect_to root_path
