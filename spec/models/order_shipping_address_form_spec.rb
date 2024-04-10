@@ -43,19 +43,24 @@ RSpec.describe OrderShippingAddressForm, type: :model do
         expect(@order_shipping_address_form.errors.full_messages).to include "Phone number can't be blank"
       end
       it '商品と結びついていない' do
-        # @order_shipping_address_form.item_id = nil
-        # @order_shipping_address_form.valid?
-        # binding.pry
-        # expect(@order_shipping_address_form.errors.full_messages).to include 'Item must exist'
+        @order_shipping_address_form.item_id = nil
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Item must exist'
       end
       it 'ユーザーと結びついていない' do
-        # @order_shipping_address_form.user_id = nil
-        # @order_shipping_address_form.valid?
-        # binding.pry
+        @order_shipping_address_form.user_id = nil
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'User must exist'
       end
       it '郵便番号の記載が正しくない' do
+        @order_shipping_address_form.postal_code = '89-3344'
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Postal code is invalid'
       end
       it '電話番号の記載が正しくない' do
+        @order_shipping_address_form.phone_number = '89-3344'
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Phone number is invalid'
       end
     end
   end
