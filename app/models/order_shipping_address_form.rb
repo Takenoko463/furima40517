@@ -21,7 +21,7 @@ class OrderShippingAddressForm
   }
 
   validates :phone_number, format: {
-    with: /\A\d{10}\z/,
+    with: /\A\d{10,11}\z/,
     message: 'is invalid'
   }
   def save
