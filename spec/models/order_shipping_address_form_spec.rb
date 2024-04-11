@@ -52,15 +52,35 @@ RSpec.describe OrderShippingAddressForm, type: :model do
         @order_shipping_address_form.valid?
         expect(@order_shipping_address_form.errors.full_messages).to include 'User must exist'
       end
-      it '郵便番号の記載が正しくない' do
+      it '郵便番号が半角文字で書かれていない' do
+        @order_shipping_address_form.postal_code = '８９０-４４５６'
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Postal code must be in the format XXX-XXXX'
+      end
+      it '電話番号が半角文字で書かれていない' do
+        @order_shipping_address_form.phone_number = '８９０４４５６４５７'
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Phone number must be exactly 10 or 11 digits long'
+      end
+      it '電話番号は数字のみ' do
+        @order_shipping_address_form.phone_number = '099251193'
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Phone number must be exactly 10 or 11 digits long'
+      end
+      it '電話番号が短い' do
+        @order_shipping_address_form.phone_number = '099251193'
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Phone number must be exactly 10 or 11 digits long'
+      end
+      it '電話番号が長い' do
+        @order_shipping_address_form.phone_number = '080546797532'
+        @order_shipping_address_form.valid?
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Phone number must be exactly 10 or 11 digits long'
+      end
+      it '郵便番号の形式が正しくない' do
         @order_shipping_address_form.postal_code = '89-3344'
         @order_shipping_address_form.valid?
-        expect(@order_shipping_address_form.errors.full_messages).to include 'Postal code is invalid'
-      end
-      it '電話番号の記載が正しくない' do
-        @order_shipping_address_form.phone_number = '89-3344'
-        @order_shipping_address_form.valid?
-        expect(@order_shipping_address_form.errors.full_messages).to include 'Phone number is invalid'
+        expect(@order_shipping_address_form.errors.full_messages).to include 'Postal code must be in the format XXX-XXXX'
       end
       it 'tokenが空では登録できない' do
         @order_shipping_address_form.token = nil
