@@ -65,8 +65,8 @@
 | city | string | null:false |
 | house_num | string | null:false |
 | building_name | string | null:true |
-| phone_number|integer| null:false|
-| order | references | null: false<br>foreign_key:true<br>\d{11}|
+| phone_number| string | null:false<br>\d{10,11}|
+| order | references | null: false<br>foreign_key:true|
 
 # Association
 ## User
