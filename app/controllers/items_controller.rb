@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   before_action :you_buyer!, only: [:edit, :update, :destroy]
   before_action :sold_out!, only: [:edit, :update, :destroy]
   def index
-    @items = Item.all
+    @items = Item.all.order(id: 'DESC')
   end
 
   def new
